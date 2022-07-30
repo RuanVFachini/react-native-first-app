@@ -1,20 +1,36 @@
+import { View,StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomePage from './src/pages/home/HomePage';
+import Header from './src/components/header/Header';
+import Footer from './src/components/footers/Footer';
+
 
 export default function App() {
+  const Stack = createNativeStackNavigator();
+
   return (
+    
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <StatusBar style='auto' />  
+      <Header name={'tio do café'}></Header>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{headerShown:false}}>
+          
+          <Stack.Screen name="Home" component={HomePage} />
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+      <Footer></Footer>
     </View>
+    
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    display: 'flex',
+    height: '100%'
+  }
+})
